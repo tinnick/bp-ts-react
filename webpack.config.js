@@ -3,8 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-	mode: "production",
-	// entry: "./src/index.tsx",
+	mode: process.env.MODE || "development",
 	devtool: "source-map",
 	plugins: [
 		new CleanWebpackPlugin(),
@@ -36,5 +35,10 @@ module.exports = {
 	externals: {
 		"react": "React",
 		"react-dom": "ReactDOM"
+	},
+	devServer: {
+		contentBase: path.join(__dirname, "dist"),
+		compress: true,
+		port: 5000
 	}
 }
